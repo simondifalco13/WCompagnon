@@ -1,0 +1,28 @@
+body {
+    color: black;
+}
+
+.title {
+    color: black;
+    border: none;
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.button_validation {
+    margin: 20px;
+}
+
+.div_delete {
+    margin-top: 20px;
+}
+
+.card {
+    margin-top: 10px;
+    padding: 0px 50px 15px 50px;
+    border: 3px rgb(10, 110, 210) solid;
+    border-radius: 6px;
+}
