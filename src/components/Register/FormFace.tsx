@@ -146,7 +146,6 @@ export const FormFace = (props: BasicFormProps) => {
     function captureTotal() {
         if (
             props.user.firstname === "" ||
-            props.user.lastname === "" ||
             props.user.favouriteCoffee === "" ||
             props.user.mail === ""
         ) {

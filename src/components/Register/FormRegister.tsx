@@ -58,7 +58,7 @@ export const FormRegister = (props: BasicFormProps) => {
     function Validate(data: Inputs, user: User, setUser: (u: User) => void) {
         user.favouriteCoffee = coffee;
         user.firstname = data.firstname;
-        user.lastname = data.lastname;
+        user.lastname = "";
         if (selectedOption != null) {
             user.groups = selectedOptions;
         }
@@ -176,14 +176,9 @@ export const FormRegister = (props: BasicFormProps) => {
                     <UploadFileComponent setBase64={setBase64} />
                 </div>
                 <div>
-                    <label htmlFor="firstname">Firstname </label>
+                    <label htmlFor="firstname">Nickname</label>
                     <input placeholder="John" {...register("firstname", { required: true })} />
                     {errors.firstname && <span className="error">This field is required</span>}
-                </div>
-                <div>
-                    <label htmlFor="lastname">Lastname </label>
-                    <input placeholder="Doe" {...register("lastname", { required: true })} />
-                    {errors.lastname && <span className="error">This field is required</span>}
                 </div>
                 <div>
                     <label htmlFor="mail">Mail </label>
