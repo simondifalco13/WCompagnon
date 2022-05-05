@@ -11,6 +11,7 @@ export default function AdminHome(props: AdminHomeProps) {
     function logout() {
         window.sessionStorage.removeItem("loggedIn");
         props.setIsLoggedIn(false);
+        navigate("/home");
     }
     return (
         <>

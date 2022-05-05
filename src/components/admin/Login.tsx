@@ -28,7 +28,7 @@ export const Login = (props: LoginProps) => {
             body: values,
         };
         const response = await fetch(
-            process.env.REACT_APP_API_BASE_URL + "" + props.urlPath,
+            process.env.REACT_APP_API_BASE_URL + "/user/login",
             requestOptions
         );
         try {
@@ -57,24 +57,19 @@ export const Login = (props: LoginProps) => {
                     val.password = sha1(val.password);
                     isAdmin(JSON.stringify(val)).then((res) => {
                         values.password = "";
-                        if (props.urlPath === "/admin") {
-                            if (res === true) {
-                                window.sessionStorage.setItem(props.sessionVariable, "true");
-                                var user = res.user;
+                        if (res.status === 200) {
+                            if (res.admin !== null) {
+                                window.sessionStorage.setItem("loggedIn", "true");
+                                var admin = res.admin;
                                 //stocker Token dans sessionStorage
                                 //window.sessionStorage.setItem("token", user.token);
-                                window.sessionStorage.setItem("user", JSON.stringify(user));
+                                //window.sessionStorage.setItem("user", JSON.stringify(admin));
                                 setIsSubmitted(true);
                                 props.setIsLoggedIn(true);
-                                navigate("/admin/home");
+                                navigate("/admin");
                             } else {
-                                values.password = "";
-                                setIsSubmitted(false);
-                            }
-                        } else if (props.urlPath === "/user/login") {
-                            if (res.status === 200) {
                                 if (res.user != null) {
-                                    window.sessionStorage.setItem(props.sessionVariable, "true");
+                                    window.sessionStorage.setItem("userLoggedIn", "true");
                                     var user = res.user;
                                     window.sessionStorage.setItem("user", JSON.stringify(user));
                                     setIsSubmitted(true);
@@ -85,6 +80,9 @@ export const Login = (props: LoginProps) => {
                                     setIsSubmitted(false);
                                 }
                             }
+                        } else {
+                            values.password = "";
+                            setIsSubmitted(false);
                         }
                     });
                 }}

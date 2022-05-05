@@ -126,15 +126,21 @@ const ResponsiveAppBar = (props: AppbarProps) => {
                                 Log out
                             </Button>
                         )}
-                        {!window.sessionStorage.getItem("userLoggedIn") && (
-                            <Button
-                                key={"userconnect"}
-                                onClick={() => navigate("/loginUser")}
-                                sx={{ my: 2, color: "white", display: "block", alignSelf: "right" }}
-                            >
-                                Sign in
-                            </Button>
-                        )}
+                        {!window.sessionStorage.getItem("userLoggedIn") &&
+                            !window.sessionStorage.getItem("loggedIn") && (
+                                <Button
+                                    key={"userconnect"}
+                                    onClick={() => navigate("/loginUser")}
+                                    sx={{
+                                        my: 2,
+                                        color: "white",
+                                        display: "block",
+                                        alignSelf: "right",
+                                    }}
+                                >
+                                    Sign in
+                                </Button>
+                            )}
                         {window.sessionStorage.getItem("userLoggedIn") === "true" && (
                             <Button
                                 key={"account"}
@@ -160,9 +166,8 @@ const ResponsiveAppBar = (props: AppbarProps) => {
     );
     function disconnect() {
         window.sessionStorage.removeItem("loggedIn");
-        window.sessionStorage.removeItem("user");
-
         props.setIsLoggedIn(false);
+        navigate("/home");
     }
     function disconnectUser() {
         window.sessionStorage.removeItem("userLoggedIn");
