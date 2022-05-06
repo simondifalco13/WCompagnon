@@ -47,7 +47,7 @@ export default function ConsultGroups() {
         <>
             <Grid container spacing={2} justifyContent="center">
                 <Grid item xs={12}>
-                    <h2>Group</h2>
+                    <h2>Groups</h2>
                 </Grid>
                 {groups.map((group) => {
                     return (
