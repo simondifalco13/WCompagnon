@@ -3,7 +3,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { styled } from "@mui/material";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import React, { useEffect, useState } from "react";
-import { User } from "../../models/User";
+import { GroupWithMembers } from "../../models/GroupWithMembers";
 import UsersDataGrid from "./UsersDataGrid";
 
 interface CafyGroup {
@@ -11,13 +11,6 @@ interface CafyGroup {
     name: string;
     members: string[];
     engine: string;
-}
-
-interface GroupWithMembers {
-    id: string;
-    name: string;
-    engine: string;
-    members: User[];
 }
 
 interface GroupProps {
@@ -44,8 +37,10 @@ export default function GroupTable(props: GroupProps) {
     const [membersEmail, setMembersEmail] = useState<string[]>([]);
 
     useEffect(() => {
-        setMembersEmail(props.group.members.map((member) => member.mail));
-    }, [props.group]);
+        setMembersEmail(props.group.members.map((member) =>
+            member.mail
+        ));
+    }, []);
 
     const groupStyle = {
         root: {
@@ -61,7 +56,7 @@ export default function GroupTable(props: GroupProps) {
         <>
             <Stack styles={groupStyle}>
                 <h3>
-                    {props.group.name}
+                    {props.group.group.name}
                     <ExpandMore
                         expand={expanded}
                         onClick={handleExpandClick}

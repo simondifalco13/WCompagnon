@@ -1,24 +1,11 @@
 import { Grid, styled } from "@mui/material";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import React, { useEffect, useState } from "react";
-import { User } from "../../models/User";
+import { GroupWithMembers } from "../../models/GroupWithMembers";
 import GroupTable from "./GroupTable";
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;
-}
-
-interface CafyGroup {
-    id: string;
-    name: string;
-    engine: string;
-}
-
-interface GroupWithMembers {
-    id: string;
-    name: string;
-    engine: string;
-    members: User[];
 }
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
@@ -43,6 +30,8 @@ export default function ConsultGroups() {
             });
     }, []);
 
+
+
     return (
         <>
             <Grid container spacing={2} justifyContent="center">
@@ -51,7 +40,7 @@ export default function ConsultGroups() {
                 </Grid>
                 {groups.map((group) => {
                     return (
-                        <Grid item xs={6} key={group.id}>
+                        <Grid item xs={6} key={group.group.id}>
                             <GroupTable group={group} />
                         </Grid>
                     );
