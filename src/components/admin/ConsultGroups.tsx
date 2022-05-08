@@ -49,10 +49,10 @@ export default function ConsultGroups() {
                 <Grid item xs={12}>
                     <h2>Groups</h2>
                 </Grid>
-                {groups.map((group) => {
+                {groups.map((group: any) => {
                     return (
-                        <Grid item xs={6} md={4} key={group.id}>
-                            <GroupTable group={group} />
+                        <Grid item xs={12} md={4} key={group.id}>
+                            <GroupTable group={group.group} members={group.members} />
                         </Grid>
                     );
                 })}

@@ -17,11 +17,11 @@ interface GroupWithMembers {
     id: string;
     name: string;
     engine: string;
-    members: User[];
 }
 
 interface GroupProps {
     group: GroupWithMembers;
+    members: User[];
 }
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -45,7 +45,8 @@ export default function GroupTable(props: GroupProps) {
     const [groupName, setGroupName] = useState<string>("");
 
     useEffect(() => {
-        setMembersEmail(props.group.members.map((member) => member.mail));
+        console.log(props.group);
+        setMembersEmail(props.members.map((member) => member.mail));
         setGroupName(props.group.name);
     }, [props.group]);
 
@@ -63,6 +64,7 @@ export default function GroupTable(props: GroupProps) {
         <>
             <Stack styles={groupStyle}>
                 <h3>
+                    {props.group.name}
                     <ExpandMore
                         expand={expanded}
                         onClick={handleExpandClick}
