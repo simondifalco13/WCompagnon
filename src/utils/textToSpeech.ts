@@ -8,7 +8,7 @@ const useTextToSpeech = (): [(text: string) => Promise<void>, boolean] => {
     const speakTextAsync = React.useCallback(async (text: string) => {
         var key = process.env.REACT_APP_TTS_API_KEY as string;
         var region = process.env.REACT_APP_TTS_REGION as string;
-        var voice = process.env.REACT_APP_TTS_VOICE_FR as string;
+        var voice = process.env.REACT_APP_TTS_VOICE_EN as string;
         var speechConfig = sdk.SpeechConfig.fromSubscription(key, region);
         var player = new sdk.SpeakerAudioDestination();
         player.onAudioStart = function (e: any) {};

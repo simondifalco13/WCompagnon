@@ -4,12 +4,12 @@ import "./App.css";
 import AccountInformation from "./components/Account/AccountInformation";
 import AdminHome from "./components/admin/AdminHome";
 import ConsultGroups from "./components/admin/ConsultGroups";
+import { Login } from "./components/admin/Login";
 import RegisterEngine from "./components/admin/RegisterEngine";
 import RegisterGroup from "./components/admin/RegisterGroup";
 import { Layout } from "./components/Layout/Layout";
 import { FormFace } from "./components/Register/FormFace";
 import { FormRegister } from "./components/Register/FormRegister";
-import { UserLogin } from "./components/UserLogin";
 import { Welcome } from "./components/Welcome";
 import { CallUser } from "./models/CallUser";
 import { User } from "./models/User";
@@ -69,8 +69,14 @@ function App() {
                         />
                         <Route path="/admin/consult" element={<ConsultGroups />} />
                         <Route
-                            path="/loginUser"
-                            element={<UserLogin setIsUserLoggedIn={setIsUserLoggedIn} />}
+                            path="/login"
+                            element={
+                                <Login
+                                    setIsLoggedIn={setIsLoggedIn}
+                                    urlPath=""
+                                    sessionVariable="userLoggedIn"
+                                />
+                            }
                         />
 
                         <Route path="*" element={<Welcome />} />

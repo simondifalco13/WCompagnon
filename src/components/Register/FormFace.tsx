@@ -56,9 +56,7 @@ export const FormFace = (props: BasicFormProps) => {
         var message = data.message;
         switch (message) {
             case "success":
-                setTimeout(() => {
-                    navigate("/cafy");
-                }, 4000);
+                SetPhrase("Loading...");
                 break;
 
             case "error mail":
@@ -112,7 +110,7 @@ export const FormFace = (props: BasicFormProps) => {
         var seconds = timeoutStep / 1000;
         var voiceP = "";
         for (let i = seconds; i >= 0; i--) {
-            voiceP += i + ",";
+            voiceP += i + " ";
         }
         speakTextWithVoice(voiceP);
         setBtnDisabled(true);
@@ -132,12 +130,12 @@ export const FormFace = (props: BasicFormProps) => {
             currentState++;
             if (currentState === 6) {
                 Request(props.user);
-                SetPhrase("Loading...");
+                console.log(props.user);
                 setSpinnerState(true);
                 setTimeout(() => {
                     setSpinnerState(false);
-                    navigate("/cafy");
-                }, 4000);
+                    navigate("/login");
+                }, 2000);
             }
             setState(currentState);
         }, timeoutStep);

@@ -110,13 +110,25 @@ const ResponsiveAppBar = (props: AppbarProps) => {
                         >
                             Home
                         </Button>
-                        <Button
-                            key={"register"}
-                            onClick={handleRegister}
-                            sx={{ my: 2, color: "white", display: "block" }}
-                        >
-                            Register
-                        </Button>
+                        {window.sessionStorage.getItem("loggedIn") !== "true" &&
+                            window.sessionStorage.getItem("userLoggedIn") !== "true" && (
+                                <Button
+                                    key={"register"}
+                                    onClick={handleRegister}
+                                    sx={{ my: 2, color: "white", display: "block" }}
+                                >
+                                    Register
+                                </Button>
+                            )}
+                        {window.sessionStorage.getItem("loggedIn") === "true" && (
+                            <Button
+                                key={"admin"}
+                                onClick={() => navigate("/admin")}
+                                sx={{ my: 2, color: "white", display: "block", alignSelf: "right" }}
+                            >
+                                Admin
+                            </Button>
+                        )}
                         {window.sessionStorage.getItem("loggedIn") === "true" && (
                             <Button
                                 key={"log out"}
@@ -130,7 +142,7 @@ const ResponsiveAppBar = (props: AppbarProps) => {
                             !window.sessionStorage.getItem("loggedIn") && (
                                 <Button
                                     key={"userconnect"}
-                                    onClick={() => navigate("/loginUser")}
+                                    onClick={() => navigate("/login")}
                                     sx={{
                                         my: 2,
                                         color: "white",

@@ -1,4 +1,4 @@
-import { Button, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import "../css/welcome.css";
 import ContentCard from "./Cards/ContentCard";
@@ -67,13 +67,6 @@ export const Welcome = () => {
                 imageSrc={Delonghi.imageSrc}
             />
             <Grid item md={3} xs={12}></Grid>
-            <Grid item xs={12} md={12}>
-                <h3>How to ?</h3>
-                <p>
-                    Register to our services : <Button onClick={handleRegister}>Register</Button>
-                    Try Dark Cafy : <Button onClick={handleCafy}>Cafy</Button>
-                </p>
-            </Grid>
             <Grid item xs={12} md={12}>
                 <h2>About us</h2>
             </Grid>

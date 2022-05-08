@@ -51,7 +51,7 @@ export default function ConsultGroups() {
                 </Grid>
                 {groups.map((group) => {
                     return (
-                        <Grid item xs={6} key={group.id}>
+                        <Grid item xs={6} md={4} key={group.id}>
                             <GroupTable group={group} />
                         </Grid>
                     );

@@ -42,9 +42,11 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 export default function GroupTable(props: GroupProps) {
     const [expanded, setExpanded] = React.useState(false);
     const [membersEmail, setMembersEmail] = useState<string[]>([]);
+    const [groupName, setGroupName] = useState<string>("");
 
     useEffect(() => {
         setMembersEmail(props.group.members.map((member) => member.mail));
+        setGroupName(props.group.name);
     }, [props.group]);
 
     const groupStyle = {
@@ -61,7 +63,6 @@ export default function GroupTable(props: GroupProps) {
         <>
             <Stack styles={groupStyle}>
                 <h3>
-                    {props.group.name}
                     <ExpandMore
                         expand={expanded}
                         onClick={handleExpandClick}
