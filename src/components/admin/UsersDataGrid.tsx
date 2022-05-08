@@ -134,7 +134,6 @@ export default function UsersDataGrid(props: DataGridMembers) {
                         <TableHead>
                             <TableRow>
                                 <TableCell>Email</TableCell>
-                                <TableCell>Edit</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -145,17 +144,6 @@ export default function UsersDataGrid(props: DataGridMembers) {
                                 >
                                     <TableCell component="th" scope="row">
                                         {row.email}
-                                    </TableCell>
-                                    <TableCell align="left">
-                                        <Button
-                                            variant="contained"
-                                            color="primary"
-                                            onClick={() => {
-                                                DialogForDeleting(row.email);
-                                            }}
-                                        >
-                                            Delete
-                                        </Button>
                                     </TableCell>
                                 </TableRow>
                             ))}
