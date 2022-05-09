@@ -1,4 +1,14 @@
-import { Avatar, Button, Grid, MenuItem, Select } from "@mui/material";
+import {
+    Avatar,
+    Button,
+    FormControlLabel,
+    FormLabel,
+    Grid,
+    MenuItem,
+    Radio,
+    RadioGroup,
+    Select,
+} from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import "../../css/account.css";
 import { User } from "../../models/User";
@@ -37,6 +47,7 @@ export default function AccountInformation(props: UserProps) {
     const [selectedOptionsName, setSelectedOptionsName] = useState<Array<string>>([]);
     const [dialogState, setDialogState] = useState("");
     const [oldAvatar, setOldAvatar] = useState<string>("");
+    const [modifyGroups, setModifyGroups] = useState<boolean>(false);
 
     useEffect(() => {
         fetch(process.env.REACT_APP_API_BASE_URL + "/group/all")
@@ -390,11 +401,41 @@ export default function AccountInformation(props: UserProps) {
                             <Grid item xs={12} md={12}>
                                 {groupOptions !== undefined && !isInputDisabled && (
                                     <div style={{ marginTop: "30px" }}>
-                                        <label>Groups : </label>
-                                        <UnstyledSelectsMultiple
-                                            options={groupOptions}
-                                            setOptionsSelected={handleSelectOptions}
-                                        />
+                                        <FormLabel id="group-label">
+                                            Want to modify your group(s) ?
+                                        </FormLabel>
+                                        <RadioGroup
+                                            aria-labelledby="group-label"
+                                            defaultValue="no"
+                                            name="radio-buttons-group"
+                                            row
+                                        >
+                                            <FormControlLabel
+                                                value="yes"
+                                                control={<Radio />}
+                                                label="Yes"
+                                                onChange={() => {
+                                                    setModifyGroups(true);
+                                                }}
+                                            />
+                                            <FormControlLabel
+                                                value="no"
+                                                control={<Radio />}
+                                                label="No"
+                                                onChange={() => {
+                                                    setModifyGroups(false);
+                                                }}
+                                            />
+                                        </RadioGroup>
+                                        {modifyGroups && (
+                                            <div>
+                                                <label>Groups : </label>
+                                                <UnstyledSelectsMultiple
+                                                    options={groupOptions}
+                                                    setOptionsSelected={handleSelectOptions}
+                                                />
+                                            </div>
+                                        )}
                                     </div>
                                 )}
                             </Grid>
