@@ -217,6 +217,7 @@ export default function AccountInformation(props: UserProps) {
                     setOpen(true);
                     setUser(updatedUser);
                     setIsInputDisabled(true);
+                    setModifyGroups(false);
                     setSelectedOptionsName(getGroupNames(updatedUser.groups));
                 }
                 if (data == false) {
@@ -224,6 +225,7 @@ export default function AccountInformation(props: UserProps) {
                     setTitle("Updating account");
                     setContent("You didn't modify your account, so it has not been updated");
                     setOpen(true);
+                    setModifyGroups(false);
                     setIsInputDisabled(true);
                 }
             } catch (error) {
@@ -249,6 +251,7 @@ export default function AccountInformation(props: UserProps) {
         if (user !== null && user !== undefined) {
             var groupsName = getGroupNames([...user.groups]);
             setSelectedOptionsName(groupsName);
+            setModifyGroups(false);
         }
         setIsInputDisabled(true);
     };
