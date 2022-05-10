@@ -195,7 +195,9 @@ export default function AccountInformation(props: UserProps) {
         if (userChanged && user !== null && user !== undefined) {
             const updatedUser = { ...user };
             updatedUser.favouriteCoffee = inputFavouriteCoffee;
-            updatedUser.groups = selectedOptions;
+            if (modifyGroups) {
+                updatedUser.groups = selectedOptions;
+            }
             const requestOptions = {
                 method: "PUT",
                 headers: {
