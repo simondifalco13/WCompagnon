@@ -1,8 +1,7 @@
+import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import "../../css/form.css";
-import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import UnstyledSelectsMultiple from "../MultiSelect/UnstyledSelectsMultiple";
 import AlertDialog from "../Dialog/AlertDialog";
 
 type Inputs = {
@@ -63,7 +62,7 @@ export default function RegisterGroup() {
     const [open,setOpen]=useState(false);
     const[navigateLink,setNavigateLink]=useState("");
 
-    
+
     useEffect( () =>{
         fetch(process.env.REACT_APP_API_BASE_URL+'/engine/all')
         .then(response => response.json())
@@ -72,15 +71,15 @@ export default function RegisterGroup() {
         })
     }, [])
 
-   
-    useEffect(() =>{
-        fetch(process.env.REACT_APP_API_BASE_URL+'/user/all')
-        .then(response => response.json())
-        .then(data => {
-           setUsers(data);
-           setUserOptions(setOptionsByArray(data));
-        })
-    }, [])
+
+    // useEffect(() =>{
+    //     fetch(process.env.REACT_APP_API_BASE_URL+'/user/all')
+    //     .then(response => response.json())
+    //     .then(data => {
+    //        setUsers(data);
+    //        setUserOptions(setOptionsByArray(data));
+    //     })
+    // }, [])
 
     async function Validate(data:Inputs){
         let group : CafyGroup={
@@ -122,15 +121,15 @@ export default function RegisterGroup() {
                     <label htmlFor="name">Group Name </label>
                     <input placeholder="Entreprise..."{...register("name", { required: true })} />
                     {errors.name && <span className="error">This field is required</span>}
-                </div>  
-               
-                <div>
+                </div>
+
+                {/* <div>
                     <label htmlFor="members">Members</label>
                     <UnstyledSelectsMultiple options={usersOptions} setOptionsSelected={setOptionsSelected} />
                     <br/>
                     {errors.members && <span className="error">This field is required</span>}
-                </div>  
-                
+                </div>   */}
+
                 <div className="divSelect">
                     <label htmlFor="engine">Engine associated to the group</label>
                     <Box sx={{ minWidth: 300 }}>
@@ -145,7 +144,7 @@ export default function RegisterGroup() {
                                 onChange={(e) => setSelectedEngine(e.target.value as string)}
                                 key={Math.random() * 100}
                             >
-                           
+
                             {engines.map(element => {
                                 return(
                                     <MenuItem value={element.groupId} key={Math.random() * 100}>{element.name}</MenuItem>
@@ -155,9 +154,9 @@ export default function RegisterGroup() {
                         </FormControl>
                     </Box>
                     {errors.engine && <span className="error">This field is required</span>}
-                </div>  
-                     
-               
+                </div>
+
+
 
                 <input type="submit" value={"Validate"} />
             </form>
