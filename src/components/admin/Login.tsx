@@ -61,9 +61,6 @@ export const Login = (props: LoginProps) => {
                             if (res.admin !== null) {
                                 window.sessionStorage.setItem("loggedIn", "true");
                                 var admin = res.admin;
-                                //stocker Token dans sessionStorage
-                                //window.sessionStorage.setItem("token", user.token);
-                                //window.sessionStorage.setItem("user", JSON.stringify(admin));
                                 setIsSubmitted(true);
                                 props.setIsLoggedIn(true);
                                 navigate("/admin");
